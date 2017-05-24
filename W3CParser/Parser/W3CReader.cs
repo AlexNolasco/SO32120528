@@ -9,7 +9,7 @@ namespace W3CParser.Parser
     sealed class W3CReader
 	{
         public String Software { get; private set; }
-		TextReader Reader { get; set; }
+	    TextReader Reader { get; }
 		
 		public W3CReader(TextReader reader)
 		{

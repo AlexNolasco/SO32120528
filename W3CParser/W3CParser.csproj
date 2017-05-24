@@ -12,5 +12,6 @@
     <Folder Include="Parser\" />
     <Folder Include="Instrumentation\" />
     <Folder Include="Data\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
 </Project>
