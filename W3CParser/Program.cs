@@ -12,17 +12,18 @@ namespace W3CParser
     {
         static void Main(string[] args)
         {            
-            var reader = new W3CReader(File.OpenText(args.Length > 0 ? args[0] : "Data/sample.log"));
+            var reader = new W3CReader(File.OpenText(args.Length > 0 ? args[0] : "Data/foobar.log"));
          
             using (new ConsoleAutoStopWatch())
             {
-                foreach (var @event in reader.Read().Where(e => e.Status == (int)HttpStatusCode.NotFound && e.UriStem.EndsWith(".exe", StringComparison.CurrentCultureIgnoreCase)))
+                foreach (var @event in reader.Read())
                 {
-                    Console.WriteLine("{0} ({1}):{2}/{3}",
+                    Console.WriteLine("{0} ({1}):{2}/{3} {4} (bytes sent)",
                                       @event.Status.ToString().Red().Bold(),
                                       @event.ToLocalTime(),
                                       @event.UriStem.Green(),
-                                      @event.UriQuery);
+                                      @event.UriQuery,
+                                      @event.BytesSent);
                 }
             }
         }
