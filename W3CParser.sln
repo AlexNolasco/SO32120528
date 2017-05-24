@@ -1,0 +1,22 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "W3CParser", "W3CParser\W3CParser.csproj", "{34B388FE-0D43-4F50-84E9-E67BB4CC5017}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34B388FE-0D43-4F50-84E9-E67BB4CC5017}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34B388FE-0D43-4F50-84E9-E67BB4CC5017}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34B388FE-0D43-4F50-84E9-E67BB4CC5017}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34B388FE-0D43-4F50-84E9-E67BB4CC5017}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
+	EndGlobalSection
+EndGlobal
