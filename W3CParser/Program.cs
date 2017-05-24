@@ -19,7 +19,7 @@ namespace W3CParser
                 foreach (var @event in reader.Read().Where(e => e.Status == (int)HttpStatusCode.NotFound && e.UriStem.EndsWith(".exe", StringComparison.CurrentCultureIgnoreCase)))
                 {
                     Console.WriteLine("{0} ({1}):{2}/{3}",
-                                      @event.Status.ToString().Red(),
+                                      @event.Status.ToString().Red().Bold(),
                                       @event.ToLocalTime(),
                                       @event.UriStem.Green(),
                                       @event.UriQuery);

@@ -6,6 +6,7 @@ namespace W3CParser.Extensions
     public static class W3CEventExtensions
     {
         public static int TimeTakenInSeconds(this W3CEvent w3cEvent) => w3cEvent.TimeTaken / 1000;
+
         public static DateTimeOffset ToLocalTime(this W3CEvent w3cEvent)
         {
             return UtcTime(w3cEvent).ToLocalTime();
