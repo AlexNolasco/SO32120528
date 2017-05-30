@@ -6,7 +6,7 @@ using W3CParser.Model;
 
 namespace W3CParser.Parser
 {
-    sealed class W3CReader
+    public sealed class W3CReader
 	{
         public String Software { get; private set; }
 	    TextReader Reader { get; }

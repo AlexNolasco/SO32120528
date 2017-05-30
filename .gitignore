@@ -40,4 +40,4 @@ Thumbs.db
 *.dotCover
 
 # personal stuff
-W3CParser/Data/sample.log
+Examples/Data/sample.log

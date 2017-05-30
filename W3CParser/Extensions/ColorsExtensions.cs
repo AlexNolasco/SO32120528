@@ -7,7 +7,7 @@ namespace W3CParser.Extensions
     /// <summary>
     /// Shameless copy from https://raw.githubusercontent.com/edokan/Edokan.KaiZen.Colors/master/Edokan.KaiZen.Colors/ColorsExtension.cs
     /// </summary>
-    public static class ColorsExtension
+    public static class ColorsExtensions
     {
         public struct ColorWrap
         {

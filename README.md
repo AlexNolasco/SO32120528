@@ -4,33 +4,48 @@ Answer to Stack Overflow question 32120528
 Sample code
 
 ```C#
-using System;
-using System.IO;
-using W3CParser.Extensions;
-using W3CParser.Instrumentation;
-using W3CParser.Parser;
-
-namespace W3CParser
-{
-    class Program
+	// List pages that returned a 500 status code
+    var reader = new W3CReader(textReader);
+    foreach (var webevent in reader.Read().Where(w => w.Status >= 500 && w.Status <= 600)
+             .OrderBy(w => w.Status)
+             .ThenBy(w => w.Date)
+             .ThenBy(w => w.UriStem)
+             .ThenBy(w => w.UriQuery))
     {
-        static void Main(string[] args)
-        {            
-            var reader = new W3CReader(File.OpenText(args.Length > 0 ? args[0] : "Data/foobar.log"));
-         
-            using (new ConsoleAutoStopWatch())
-            {
-                foreach (var @event in reader.Read())
-                {
-                    Console.WriteLine("{0} ({1}):{2}/{3} {4} (bytes sent)",
-                                      @event.Status.ToString().Red().Bold(),
-                                      @event.ToLocalTime(),
-                                      @event.UriStem.Green(),
-                                      @event.UriQuery,
-                                      @event.BytesSent);
-                }
-            }
-        }
+        Console.WriteLine("{0}\t{1}\t{2}{3}", webevent.Status.ToString().Red().Bold(), 
+                          webevent.ToLocalTime(),
+                          webevent.UriStem.Blue(), 
+                          webevent.UriQuery.Yellow());
     }
-}
+```
+
+```C#
+	// List requests by hour
+	var q = new W3CReader(textReader).Read()
+						 .GroupBy(r => r.Time.RoundUp(TimeSpan.FromHours(1)))
+						 .Select(g => new
+						 {
+							 HalfHour = g.Key,
+                             Count = g.Count()
+						 });
+	foreach (var r in q)
+	{
+        Console.WriteLine("{0}\t{1}", r.HalfHour.ToLocalTime(), r.Count);
+	}
+```
+
+```C#
+	// List extensions requested
+	var q = new W3CReader(textReader).Read()
+                                     .GroupBy(r => ExtractExtension(r.UriStem))
+									 .Select(g => new
+									 {
+										 Count = g.Count(),
+										 Paths = g.Key
+									 }).OrderByDescending(g => g.Count);
+
+	foreach (var r in q)
+	{
+		Console.WriteLine("{0}\t{1}", r.Count, r.Paths);
+	}
 ```

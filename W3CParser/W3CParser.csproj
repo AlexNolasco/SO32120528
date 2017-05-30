@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
 
@@ -11,7 +11,6 @@
     <Folder Include="Model\" />
     <Folder Include="Parser\" />
     <Folder Include="Instrumentation\" />
-    <Folder Include="Data\" />
     <Folder Include="Extensions\" />
   </ItemGroup>
 </Project>
