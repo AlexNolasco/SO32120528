@@ -12,14 +12,15 @@ foreach (var webevent in reader.Read().Where(w => w.Status >= 500 && w.Status <=
          .ThenBy(w => w.UriStem)
          .ThenBy(w => w.UriQuery))
 {
-	Console.WriteLine("{0}\t{1}\t{2}{3}", webevent.Status.ToString().Red().Bold(), webevent.ToLocalTime(), webevent.UriStem.Blue(),  webevent.UriQuery.Yellow());
+	Console.WriteLine("{0}\t{1}\t{2}{3}", webevent.Status.ToString().Red().Bold(), webevent.ToLocalTime(), 
+		webevent.UriStem.Blue(), webevent.UriQuery.Yellow());
 }
 ```
 
 ```C#
 // List requests by hour
 var q = new W3CReader(textReader).Read()
-					 .GroupBy(r => r.Time.RoundUp(TimeSpan.FromHours(1)))
+					 .GroupBy(r => r.UtcTime().RoundUp(TimeSpan.FromHours(1)))
 					 .Select(g => new
 					 {
 						 	HalfHour = g.Key,
@@ -27,7 +28,7 @@ var q = new W3CReader(textReader).Read()
 					 });
 foreach (var r in q)
 {
-	Console.WriteLine("{0}\t{1}", r.HalfHour.ToLocalTime(), r.Count);
+	Console.WriteLine("{0}\t{1}", r.HalfHour, r.Count);
 }
 ```
 
