@@ -5,18 +5,18 @@ Sample code
 
 ```C#
 	// List pages that returned a 500 status code
-    var reader = new W3CReader(textReader);
-    foreach (var webevent in reader.Read().Where(w => w.Status >= 500 && w.Status <= 600)
-             .OrderBy(w => w.Status)
-             .ThenBy(w => w.Date)
-             .ThenBy(w => w.UriStem)
-             .ThenBy(w => w.UriQuery))
-    {
-        Console.WriteLine("{0}\t{1}\t{2}{3}", webevent.Status.ToString().Red().Bold(), 
-                          webevent.ToLocalTime(),
-                          webevent.UriStem.Blue(), 
-                          webevent.UriQuery.Yellow());
-    }
+	var reader = new W3CReader(textReader);
+	foreach (var webevent in reader.Read().Where(w => w.Status >= 500 && w.Status <= 600)
+	         .OrderBy(w => w.Status)
+	         .ThenBy(w => w.Date)
+	         .ThenBy(w => w.UriStem)
+	         .ThenBy(w => w.UriQuery))
+	{
+	    Console.WriteLine("{0}\t{1}\t{2}{3}", webevent.Status.ToString().Red().Bold(), 
+	                      webevent.ToLocalTime(),
+	                      webevent.UriStem.Blue(), 
+	                      webevent.UriQuery.Yellow());
+	}
 ```
 
 ```C#
