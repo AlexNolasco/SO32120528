@@ -20,12 +20,12 @@ foreach (var webevent in reader.Read().Where(w => w.Status >= 500 && w.Status <=
 ```C#
 // List requests by hour
 var q = new W3CReader(textReader).Read()
-					 .GroupBy(r => r.UtcTime().RoundUp(TimeSpan.FromHours(1)))
-					 .Select(g => new
-					 {
-						 	HalfHour = g.Key,
-							Count = g.Count()
-					 });
+			 .GroupBy(r => r.UtcTime().RoundUp(TimeSpan.FromHours(1)))
+			 .Select(g => new
+			 {
+				 	HalfHour = g.Key,
+					Count = g.Count()
+			 });
 foreach (var r in q)
 {
 	Console.WriteLine("{0}\t{1}", r.HalfHour, r.Count);
@@ -35,12 +35,12 @@ foreach (var r in q)
 ```C#
 // List extensions requested
 var q = new W3CReader(textReader).Read()
-                                 .GroupBy(r => ExtractExtension(r.UriStem))
-								 .Select(g => new
-								 {
-									 Count = g.Count(),
-									 Paths = g.Key
-								 }).OrderByDescending(g => g.Count);
+			 .GroupBy(r => ExtractExtension(r.UriStem))
+			 .Select(g => new
+			 {
+				 Count = g.Count(),
+				 Paths = g.Key
+			 }).OrderByDescending(g => g.Count);
 
 foreach (var r in q)
 {
