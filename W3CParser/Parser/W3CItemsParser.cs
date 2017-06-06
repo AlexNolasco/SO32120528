@@ -1,5 +1,4 @@
-﻿using System;
-using W3CParser.Model;
+﻿using W3CParser.Model;
 
 namespace W3CParser.Parser
 {

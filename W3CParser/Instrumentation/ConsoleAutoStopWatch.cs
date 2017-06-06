@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace W3CParser.Instrumentation
 {
-	sealed class ConsoleAutoStopWatch : IDisposable
+	public sealed class ConsoleAutoStopWatch : IDisposable
 	{
 	    readonly Stopwatch _stopWatch;
 
@@ -22,6 +22,7 @@ namespace W3CParser.Instrumentation
 											   ts.Hours, ts.Minutes, ts.Seconds,
 											   ts.Milliseconds / 10);
 			Console.WriteLine(elapsedTime, "RunTime");
+            Console.WriteLine("GC {0}", GC.CollectionCount(0));
 		}
 	}
 }

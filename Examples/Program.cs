@@ -4,6 +4,8 @@ using System.Linq;
 using W3CParser.Parser;
 using W3CParser.Extensions;
 using static W3CParser.Extensions.W3CReaderExtensions;
+using System.Reflection;
+using W3CParser.Instrumentation;
 
 namespace Examples
 {
@@ -13,7 +15,7 @@ namespace Examples
         static void Example200(TextReader textReader)
         {
             var reader = new W3CReader(textReader);
-            foreach (var webevent in reader.Read().Where(w => w.Status >= 200 && w.Status < 300).Take(100)
+            foreach (var webevent in reader.Read().Where(w => w.Status >= 200 && w.Status < 300)
                      .OrderBy(w => w.Status)
                      .ThenBy(w => w.Date)
                      .ThenBy(w => w.UriStem)
@@ -105,7 +107,12 @@ namespace Examples
 
         static void Main(string[] args)
         {
-            RequestsByHourPerDay(File.OpenText(args[0]));
+            
+            Console.WriteLine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location));
+            using (var watch = new ConsoleAutoStopWatch())
+            {
+                Example500(File.OpenText("Data/sample.log"));
+            }
         }
     }
 }
